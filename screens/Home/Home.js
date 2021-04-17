@@ -6,6 +6,7 @@ import {
 
 } from "react-native";
 import styled from 'styled-components/native';
+import {StatusBar} from "expo-status-bar";
 
 
 
@@ -42,6 +43,8 @@ const entergo = () => {
     return (
         <SafeAreaView>
             <Stylescroll>
+                <StatusBar backgroundColor='transparent' hidden={true}/>
+
                 {kimzipsa(e => e.location === selectedLocation, lists).map((list) => (
                     <CustomListItem key={list.id}
                                     id={list.id}
