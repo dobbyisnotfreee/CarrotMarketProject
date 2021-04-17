@@ -29,6 +29,7 @@ function ListScreen({navigation}) {
 
     const [lists, setLists] = useState([]);
     const progress = (lists.mannerDegree / 100)
+    const [heart, setHeart] = useState("heart-outlined");
 
 
 
@@ -91,7 +92,7 @@ function ListScreen({navigation}) {
                     <View style={{display: "flex", flexDirection: "row", paddingTop: 15, height: "15%"}}>
                         <Avatar size="medium" rounded source={{
                             uri: lists.avatarURL
-                        }}
+                        }} onPress={() => navigation.navigate("Chat")}
                         />
                         <View style={{display: "flex", flexDirection: "column", marginLeft: 5}}>
                             <Text style={{fontWeight: "bold"}}>{lists.user}</Text>
@@ -101,10 +102,10 @@ function ListScreen({navigation}) {
                             style={{display: "flex", flexDirection: "column", position: "absolute", right: 5, top: 15}}>
                             <View style={{display: "flex", flexDirection: "row"}}>
                                 {lists.mannerDegree ? (<Text style={{color: "orange", fontWeight: "bold", fontSize:17}}>{lists.mannerDegree}℃ </Text>) : (<Text> </Text>)}
-                                {lists.mannerDegree ? (<MaterialCommunityIcons name="emoticon-cool-outline" size={18} color="orange" style={{marginLeft:5, paddingTop:5}}/>
+                                {lists.mannerDegree ? (progress > 0.4 ? (<MaterialCommunityIcons name="emoticon-cool-outline" size={18} color="orange" style={{marginLeft:5, paddingTop:5}}/>) : (<MaterialCommunityIcons name="emoticon-angry-outline" size={18} color="red" style={{marginLeft:5, paddingTop:5}}/>)
                                 ) : (<Text> </Text>)}
                             </View>
-                            {lists.mannerDegree ? (<ProgressBar progress={progress} color={Colors.orange200} />)  : (<Text> </Text>)}
+                            {lists.mannerDegree ? (progress > 0.4 ? (<ProgressBar progress={progress} color={Colors.orange200} />) :(<ProgressBar progress={progress} color={Colors.red900} />))  : (<Text> </Text>)}
                             <Text style={{fontSize: 12, color: "gray", textDecorationLine: "underline", opacity: 0.5}}>Manner
                                 Meter</Text>
                         </View>
@@ -139,7 +140,10 @@ function ListScreen({navigation}) {
                 backgroundColor: "white",
                 flex:0.1,
             }}>
-                <Entypo name="heart-outlined" size={24} color="black" style={{paddingLeft:20, flex: 0.2}}/>
+                <Entypo name={heart} size={24} color="black" style={{paddingLeft:20, flex: 0.2}} onPress={() => {
+                    if (heart === "heart-outlined") setHeart("heart")
+                    else setHeart("heart-outlined")
+                }}/>
                 <View style={{flex: 0.6}}>
                     <Text style={{fontWeight: "bold"}}>{lists.price}</Text>
                     <Text style={{fontWeight: "bold",color:"orange"}}>Make Offer</Text>
