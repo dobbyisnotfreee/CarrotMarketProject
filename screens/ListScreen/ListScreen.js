@@ -101,7 +101,7 @@ function ListScreen({navigation}) {
                         <View
                             style={{display: "flex", flexDirection: "column", position: "absolute", right: 5, top: 15}}>
                             <View style={{display: "flex", flexDirection: "row"}}>
-                                {lists.mannerDegree ? (<Text style={{color: "orange", fontWeight: "bold", fontSize:17}}>{lists.mannerDegree}℃ </Text>) : (<Text> </Text>)}
+                                {lists.mannerDegree ? (progress > 0.4 ? (<Text style={{color: "orange", fontWeight: "bold", fontSize:17}}>{lists.mannerDegree}℃ </Text>) : (<Text style={{color: "red", fontWeight: "bold", fontSize:17}}>{lists.mannerDegree}℃ </Text>)) : (<Text> </Text>)}
                                 {lists.mannerDegree ? (progress > 0.4 ? (<MaterialCommunityIcons name="emoticon-cool-outline" size={18} color="orange" style={{marginLeft:5, paddingTop:5}}/>) : (<MaterialCommunityIcons name="emoticon-angry-outline" size={18} color="red" style={{marginLeft:5, paddingTop:5}}/>)
                                 ) : (<Text> </Text>)}
                             </View>
